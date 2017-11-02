@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block main %}
+
+<main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
+  <h1>Info</h1>
+  <section class="row placeholders">
+    <div class="container">
+      <hr>
+      <form method="post">
+        <div class="form-group">
+          <label>Company name</label>
+          <input name="theName" type="text" class="form-control" placeholder="Company name" required="" autofocus="">
+        </div>
+        <div class="form-group">
+          <label>Project name</label>
+          <input name="projectName" type="text" class="form-control" placeholder="Project name" required="" autofocus="">
+        </div>
+        <div class="form-group">
+          <label>Email address</label>
+          <input  name="theEmail" type="email" class="form-control" placeholder="Email" required="" autofocus="">
+        </div>
+        <div class="form-group">
+          <label>Industry</label>
+          <input name="theIndustry" class="form-control" placeholder="Industry" required="" autofocus="">
+          <hr>
+          <input class="btn btn-primary" method = "post" type="submit" value="Submit"></input>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+{% endblock %}

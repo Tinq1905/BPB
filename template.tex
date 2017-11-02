@@ -1,0 +1,59 @@
+\documentclass[11pt]{article}
+\title{A sample document}
+\author{Tim}
+\usepackage[a4paper, total={7in, 8in}]{geometry}
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{sectsty}
+\usepackage{fancyhdr}
+\usepackage{tgbonum}
+
+
+\sectionfont{\color{BrickRed}}
+\subsectionfont{\color{BrickRed}}
+\subsubsectionfont{\color{BrickRed}}
+\paragraphfont{\color{BrickRed}}
+
+\pagestyle{fancy}
+
+\begin{document}
+\maketitle
+\date
+
+\newpage
+\renewcommand{\abstractname}{Executive Summary}
+
+\begin{abstract}
+{{ exec_sum_secs }}
+\end{abstract}
+
+\newpage
+\tableofcontents
+
+\newpage{}
+\section{Customer Analysis}
+{{ customer_analysis_secs }}
+
+\newpage{}
+\section{Industry Analysis}
+{{ industry_analysis_secs }}
+
+\newpage{}
+\section{Competitor Analysis}
+{{ competitor_analysis_secs }}
+
+\newpage{}
+\section{Product \& Services}
+{{ product_service_secs }}
+
+\newpage{}
+\section{Industry Analysis}
+{{ industry_analysis_secs }}
+
+\newpage{}
+\section{Risks}
+
+\newpage{}
+\section{Dislaimer}
+{{ disclaimer_secs }}
+
+\end{document}
