@@ -15,6 +15,7 @@ c.execute('''CREATE TABLE COMPETITORANALYSIS(pid INTEGER, did INTEGER PRIMARY KE
 c.execute('''CREATE TABLE RISK(pid INTEGER, did INTEGER PRIMARY KEY, des TEXT NOT NULL, likelihood VARCHAR NOT NULL, impact VARCHAR NOT NULL, rating VARCHAR NOT NULL, strat TEXT NOT NULL)''')
 c.execute('''CREATE TABLE ITEM(pid INTEGER, did INTEGER PRIMARY KEY, name VARCHAR NOT NULL, price INTEGER, cost INTEGER, num INTEGER, inc INTEGER)''')
 c.execute('''CREATE TABLE EXPENSE(pid INTEGER PRIMARY KEY, monHours INTEGER, monRate INTEGER, tueHours INTEGER, tueRate INTEGER,wedHours INTEGER, wedRate INTEGER, thuHours INTEGER, thuRate INTEGER,friHours INTEGER, friRate INTEGER, satHours INTEGER, satRate INTEGER,sunHours INTEGER, sunRate INTEGER, rent INTEGER, elec INTEGER, gas INTEGER, water INTEGER, wifi INTEGER, tele INTEGER, cont INTEGER, pub INTEGER, other INTEGER, fitout INTEGER, dep INTEGER, mer INTEGER,equip INTEGER,acqui INTEGER,bankrate INTEGER, monnew INTEGER, mondig INTEGER, socmedia INTEGER, seo INTEGER, account INTEGER, bkeeper INTEGER, legal INTEGER, cons INTEGER, exps INTEGER )''')
+c.execute('''CREATE TABLE INFO(pid INTEGER PRIMARY KEY, c_name VARCHAR, p_name VARCHAR, e_addr VARCHAR, p_addr VARCHAR, num VARCHAR,industry VARCHAR)''')
 
 
 c.execute('''drop table disclaimer''')

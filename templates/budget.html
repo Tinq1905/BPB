@@ -49,7 +49,7 @@
           {% endif %}
         </div>
       </div>
-
+      
       <div class="tab-pane fade" id="nav-expense" role="tabpanel" aria-labelledby="nav-expense-tab">
         <div class="container">
           <br>
@@ -195,12 +195,12 @@
             <br>
             <input class="btn btn-primary" method = "post" type="submit" value="Update"></input>
           </form>
-
+          
           {% endif %}
         </div>
       </div>
-
-
+      
+      
       <div class="tab-pane fade" id="nav-preview" role="tabpanel" aria-labelledby="nav-preview-tab">
         <br>
         {% if data[2]!= [] %}
@@ -272,7 +272,7 @@
               {% endfor %}
               <td align="right">${{ data[2]['sum_totalgrossprofit']}}</td>
             </tr>
-
+            
             <tr>
               <th scope="row"> </th>
             </tr>
@@ -377,9 +377,9 @@
         {% endif %}
       </div>
     </div>
-
+    
   </section>
-
+  
   <section>
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -414,7 +414,7 @@
       </div>
     </div>
   </section>
-
+  
   <section>
     <div class="modal fade" id="delConfirm" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -442,12 +442,12 @@
   </section>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
   <script>
-
-  var config = {
-    type: 'pie',
-    data: {
-      datasets: [{
-        data: [
+    
+    var config = {
+      type: 'pie',
+      data: {
+        datasets: [{
+          data: [
           {{ data[2]['labour'] }},
           {{ data[2]['rent'] }},
           {{ data[2]['marketing'] }},
@@ -456,8 +456,8 @@
           {{ data[2]['financing'] }},
           {{ data[2]['pro'] }},
           {{ data[2]['subscription'] }}
-        ],
-        backgroundColor: [
+          ],
+          backgroundColor: [
           "rgb(14,159,96)",
           "rgb(82,89,90)",
           "rgb(184,143,91)",
@@ -466,10 +466,10 @@
           "rgb(228,169,40)",
           "rgb(164,104,166)",
           "rgb(98,101,85)"
-        ],
-        label: 'Expenditure'
-      }],
-      labels: [
+          ],
+          label: 'Expenditure'
+        }],
+        labels: [
         "labour",
         "rent",
         "marketing",
@@ -478,40 +478,40 @@
         "financing",
         "professional fee",
         "subscription"
-      ]
-    },
-    options: {
-      responsive: false
-    }
-  };
-  window.onload = function() {
-    var ctx2 = document.getElementById("chart-area").getContext("2d");
-    window.myPie = new Chart(ctx2, config);
-  };
-  var ctx = document.getElementById('myChart').getContext('2d');
-  var chart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ["January", "February", "March", "April", "May", "June", "July","August","September","October","November","December"],
-      datasets: [{
-        label: "Net Profit",
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
-        data: {{ data[2]['net_profit'] }},
-        fill: false
-      }]
-    },
-    options: {
-      responsive: false,
-      scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
+        ]
+      },
+      options: {
+        responsive: false
+      }
+    };
+    window.onload = function() {
+      var ctx2 = document.getElementById("chart-area").getContext("2d");
+      window.myPie = new Chart(ctx2, config);
+    };
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ["January", "February", "March", "April", "May", "June", "July","August","September","October","November","December"],
+        datasets: [{
+          label: "Net Profit",
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: {{ data[2]['net_profit'] }},
+          fill: false
+        }]
+      },
+      options: {
+        responsive: false,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
         }
-    }
-  });
+      }
+    });
   </script>
 </main>
 {% endblock %}

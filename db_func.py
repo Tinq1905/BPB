@@ -70,6 +70,23 @@ def select_risk(table,pid):
 
 ###
 
+def update_info(pid,c_name,p_name,e_addr,p_addr,num,industry):
+	conn = sqlite3.connect('test.db')
+	c = conn.cursor()
+	c.execute('''UPDATE INFO SET c_name='%s',p_name='%s',e_addr='%s',p_addr='%s',num='%s', industry='%s' WHERE pid='%s' ''' % (c_name,p_name,e_addr,p_addr,num,industry,pid))
+	conn.commit()
+	conn.close()
+	return 'success'
+
+def insert_info(pid,c_name,p_name,e_addr,p_addr,num,industry):
+	conn = sqlite3.connect('test.db')
+	c = conn.cursor()
+	c.execute('''INSERT INTO INFO (pid, c_name,p_name,e_addr,p_addr,num,industry) VALUES ('%s','%s','%s','%s','%s','%s','%s')''' %(pid, c_name,p_name,e_addr,p_addr,num,industry))
+	conn.commit()
+	conn.close()
+	return 'success'
+###
+
 def insert_item(pid,name,price,cost,num,inc):
 	conn = sqlite3.connect('test.db')
 	c = conn.cursor()

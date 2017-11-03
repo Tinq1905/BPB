@@ -15,9 +15,6 @@ import helper
 app = Flask(__name__)
 app.secret_key = 'Trconsulting'
 
-# database connect
-
-
 @app.route('/')
 def main():
 	return render_template('main.html')
@@ -55,10 +52,23 @@ def sendpdf():
 def info(pid):
 	if login_status(session,pid):
 		if request.method == 'GET':
-			return render_template('info.html')
+			data=db_func.select_record('info',pid)
+			return render_template('info.html',data=data)
 		elif request.method == 'POST':
-				a = request.form
-				return a['theTittle']
+			c_name = request.form['theName']
+			p_name = request.form['projectName']
+			e_addr = request.form['theEmail']
+			p_addr = request.form['postAddr']
+			num = request.form['phoneNum']
+			industry = request.form['theIndustry']
+			if db_func.validate_content(db_func.select_record('info',pid)):
+				db_func.update_info(pid,c_name,p_name,e_addr,p_addr,num,industry)
+				flash('successfully update !')
+				return redirect('/%d/info' % pid)
+			else:
+				db_func.insert_info(pid, c_name,p_name,e_addr,p_addr,num,industry)
+				flash('successfully insert !')
+				return redirect('/%d/info' % pid)
 		else:
 			return redirect(url_for('login'))
 	return redirect(url_for('login'))
