@@ -7,10 +7,13 @@ from flask import flash
 from flask import redirect
 from flask import url_for
 from flask import send_file
-
+import generate_doc
 import sqlite3
 import db_func
 import helper
+import os
+import sys
+import subprocess
 
 app = Flask(__name__)
 app.secret_key = 'Trconsulting'
@@ -45,8 +48,15 @@ def logout():
 
 @app.route('/sendpdf',methods=['GET'])
 def sendpdf():
-	print 'hi'
-	return send_file('final_file.pdf')
+	pid = str(session['project_number'][0])
+	generate_doc.generate_doc(pid)
+	### call shell here and execute pdf latex -> pdf
+	tex_file_name = pid +'.tex'
+	tex_dir = os.path.join('pdf',tex_file_name)
+	subprocess.call(['pdflatex',tex_dir])
+	file_name = pid + '.pdf'
+	docdir = os.path.join('pdf',file_name)
+	return send_file(docdir)
 
 @app.route('/<int:pid>/info',methods=['GET','POST'])
 def info(pid):
