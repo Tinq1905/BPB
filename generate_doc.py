@@ -44,16 +44,16 @@ def generate_SWOT_sec(pid):
     print weakness
     for i in strength:
         sec_s += i[0]
-        sec_s += '\r\n'
+        sec_s += os.linesep
     for i in weakness:
         sec_w += i[0]
-        sec_w += '\r\n'
+        sec_s += os.linesep
     for i in opportunity:
         sec_o += i[0]
-        sec_o += '\r\n'
+        sec_s += os.linesep
     for i in threats:
         sec_t += i[0]
-        sec_t += '\r\n'
+        sec_s += os.linesep
     temp = open('swot_temp.tex','r')
     swot_temp = Template(temp.read())
     result = swot_temp.render(strength=sec_s,weakness=sec_w,opportunity=sec_o,threats=sec_t)
