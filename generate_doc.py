@@ -85,6 +85,10 @@ def generate_budget_rows(pid):
     budget_row = open('budget_row.tex','r')
     temp = Template(budget_row.read())
     budget = generate_table(pid)
+    print budget
+    if budget == []:
+        print 'no budget'
+        return '\\\\'
     result += temp.render(name='Total Sell',data=' & '.join(str(v) for v in budget['totalsell']),total=str(budget['sum_totalsell']))
     result += temp.render(name='Total COGS',data=' & '.join(str(v) for v in budget['totalcost']),total=str(budget['sum_totalcost']))
     result += temp.render(name='Gross Profit',data=' & '.join(str(v) for v in budget['totalgrossprofit']),total=str(budget['sum_totalgrossprofit']))
