@@ -13,10 +13,11 @@ import db_func
 import helper
 import os
 import sys
-import subprocess
+
 
 app = Flask(__name__)
 app.secret_key = 'Trconsulting'
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 @app.route('/')
 def main():
@@ -46,14 +47,12 @@ def logout():
 	session.clear()
 	return redirect(url_for('main'))
 
-@app.route('/sendpdf',methods=['GET'])
-def sendpdf():
+@app.route('/<int:pid>/sendpdf',methods=['GET'])
+def sendpdf(pid):
+	print 'aaa'
 	pid = str(session['project_number'][0])
+	print 'aaa'
 	generate_doc.generate_doc(pid)
-	### call shell here and execute pdf latex -> pdf
-	tex_file_name = pid +'.tex'
-	tex_dir = os.path.join('pdf',tex_file_name)
-	subprocess.call(['pdflatex',tex_dir])
 	file_name = pid + '.pdf'
 	docdir = os.path.join('pdf',file_name)
 	return send_file(docdir)

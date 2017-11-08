@@ -2,6 +2,7 @@ import sqlite3
 import os
 from jinja2 import Environment, PackageLoader, select_autoescape, Template
 from helper import generate_table
+import subprocess
 
 
 
@@ -128,3 +129,9 @@ def generate_doc(pid):
     final_file = open(docdir,'w')
     final_file.write(result.encode('utf-8'))
     final_file.close()
+    tex_file_name = pid +'.tex'
+    tex_dir = os.path.join('pdf',tex_file_name)
+    pdf_file_name = pid + '.pdf'
+    pdf_dir = os.path.join('pdf',pdf_file_name)
+    print 'before execution'
+    subprocess.call(['pdflatex','-output-directory', 'pdf',tex_dir])
