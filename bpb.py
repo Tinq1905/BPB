@@ -570,7 +570,11 @@ def budget(pid):
 				itemData = db_func.select_item(pid)
 				expenseData = db_func.select_record('expense',pid)
 				table = helper.generate_table(pid)
-				data = [itemData,expenseData,table]
+				past1 = db_func.select_record('firstyear',pid)
+				past2 = db_func.select_record('secondyear',pid)
+				past = [past1,past2]
+				print past
+				data = [itemData,expenseData,table,past]
 				return render_template('budget.html', data=data)
 			if request.method == 'POST':
 				pass
@@ -614,6 +618,41 @@ def item_delete(pid):
 			return redirect(url_for('login'))
 	else:
 		return redirect(url_for('login'))
+
+#past data insert and update
+@app.route('/<int:pid>/past',methods=['POST'])
+def past(pid):
+	if 'logged_in' in session:
+		if (session['logged_in'] == True):
+			action = request.form['action']
+			if action =='update':
+				print request.form['sales']
+				sales = request.form['sales']
+				cogs = request.form['cogs']
+				revenue = request.form['revenue']
+				expense = request.form['expense']
+				table = request.form['table']
+				if db_func.validate_content(db_func.select_record(table,pid)):
+					db_func.update_past(table,pid,sales,cogs,revenue,expense)
+					flash('successfully update !')
+					return redirect('/%d/budget' % pid)
+				else:
+					db_func.insert_past(table,pid,sales,cogs,revenue,expense)
+					flash('successfully insert !')
+					return redirect('/%d/budget' % pid)
+			if action == 'delete':
+				table = request.form['table']
+				db_func.delete_past(table,pid)
+				flash('successfully delete !')
+				return redirect('/%d/budget' % pid)
+			else:
+				pass
+		else:
+			return redirect(url_for('login'))
+	else:
+		return redirect(url_for('login'))
+
+
 
 @app.route('/<int:pid>/budget/update',methods=['GET','POST'])
 def budget_update(pid):
@@ -673,6 +712,7 @@ def budget_update(pid):
 	else:
 		return redirect(url_for('login'))
 
+# login id
 def suc_login(email,password):
 	info = [email,password]
 	def getone(info):
@@ -683,6 +723,7 @@ def suc_login(email,password):
 		return id
 	return getone(info)
 
+# login validation
 def login_status(session,pid):
 	if 'logged_in' in session:
 		if session['logged_in'] == True and session['project_number'][0] == pid:

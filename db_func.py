@@ -122,6 +122,32 @@ def update_expense(pid,monHours,monRate,tueHours,tueRate,wedHours,wedRate,thuHou
 	conn.close()
 	return 'success'
 
+###
+
+def insert_past(table,pid,sales,cogs,revenue,expense):
+	conn = sqlite3.connect('test.db')
+	c = conn.cursor()
+	c.execute('''INSERT INTO '%s' VALUES ('%s','%s','%s','%s','%s')''' % (table,pid,sales,cogs,revenue,expense))
+	conn.commit()
+	conn.close()
+	return 'success'
+
+def update_past(table,pid,sales,cogs,revenue,expense):
+	conn = sqlite3.connect('test.db')
+	c = conn.cursor()
+	c.execute('''UPDATE '%s' SET sales='%s',cogs='%s',revenue='%s',expense='%s',where pid='%s')''' % (table,sales,cogs,revenue,expense,pid))
+	conn.commit()
+	conn.close()
+	return 'success'
+
+def delete_past(table,pid):
+	conn = sqlite3.connect('test.db')
+	c = conn.cursor()
+	c.execute('''DELETE FROM '%s' WHERE pid='%s' ''' % (table,pid))
+	conn.commit()
+	conn.close()
+	return 'success'
+
 def validate_content(*arg):
 	for i in arg:
 		if len(i)== 0:
