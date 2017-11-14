@@ -376,6 +376,16 @@
             <h3> Expenditure pie chart:</h3>
             <hr>
             <canvas id="chart-area"></canvas>
+            {% if data[3][0]!=[] %}
+            <h3> Last year chart:</h3>
+            <hr>
+            <canvas id="firstyearchart"></canvas>
+            {% endif %}
+            {% if data[3][1]!= [] %}
+            <h3> Second last year chart:</h3>
+            <hr>
+            <canvas id="secondyearchart"></canvas>
+            {% endif %}
           </div>
           {% endif %}
         </div>
@@ -500,7 +510,6 @@
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script>
-      
       var config = {
         type: 'pie',
         data: {
@@ -570,6 +579,68 @@
           }
         }
       });
+      {% if data[3][0]!=[] %}
+      var firstctx = document.getElementById('firstyearchart').getContext('2d');
+      var firstchart = new Chart(firstctx, {
+        type: 'bar',
+        data: {
+          labels: ["Sales", "COGS", "Revenue", "Expense"],
+          datasets: [{
+            label: "Overall of Last Year",
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [
+              {{ data[3][0][0][1] }},
+              {{ data[3][0][0][2] }},
+              {{ data[3][0][0][3] }},
+              {{ data[3][0][0][4] }}
+            ],
+            fill: false
+          }]
+        },
+        options: {
+          responsive: false,
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero:true
+              }
+            }]
+          }
+        }
+      });
+      {% endif %}
+      {% if data[3][1]!=[] %}
+      var secondctx = document.getElementById('secondyearchart').getContext('2d');
+      var secondchart = new Chart(secondctx, {
+        type: 'bar',
+        data: {
+          labels: ["Sales", "COGS", "Revenue", "Expense"],
+          datasets: [{
+            label: "Overall of Second Last Year",
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [
+              {{ data[3][1][0][1] }},
+              {{ data[3][1][0][2] }},
+              {{ data[3][1][0][3] }},
+              {{ data[3][1][0][4] }},
+            ],
+            fill: false
+          }]
+        },
+        options: {
+          responsive: false,
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero:true
+              }
+            }]
+          }
+        }
+      });
+      {% endif %}
     </script>
   </main>
   {% endblock %}

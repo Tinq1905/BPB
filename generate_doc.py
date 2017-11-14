@@ -110,7 +110,35 @@ def generate_budget_sec(rows):
     temp = Template(budget_temp.read())
     return temp.render(budget_rows=rows)
 
+### generate past chart 
+def generate_past_chart(rows):
+    if rows == False:
+        return ''
+    chart_temp = open('past.tex','r')
+    temp = Template(chart_temp.read())
+    return temp.render(rows=rows[0],legend=rows[1])
     
+def generate_past_row(pid):
+    result = ''
+    legend = ''
+    past_row = open('past_row.tex','r')
+    temp = Template(past_row.read())
+    conn = sqlite3.connect('test.db')
+    c = conn.cursor()
+    past1 = c.execute('''select * from 'firstyear' where pid = '%d';''' %(pid)).fetchall()
+    past2 = c.execute('''select * from 'secondyear' where pid = '%d';''' %(pid)).fetchall()
+    print 'here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',past1,past2
+    conn.close()
+    if past1 !=[]:
+        result += temp.render(sales=past1[0][1],cogs=past1[0][2],revenue=past1[0][3],expense=past1[0][4])
+        legend += 'Last Year'
+    if past2 !=[]:
+        result += temp.render(sales=past2[0][1],cogs=past2[0][2],revenue=past2[0][3],expense=past2[0][4])
+        legend += ',Second last Year'
+    print result
+    if result == '':
+        return False
+    return [result,legend]
     
 def generate_doc(pid):
     # generate parts
@@ -123,9 +151,12 @@ def generate_doc(pid):
     SWOT = generate_SWOT_sec(pid)
     risk = generate_risk_sec(generate_risk_rows(pid))
     budget = generate_budget_sec(generate_budget_rows(int(pid)))
+    past = generate_past_chart(generate_past_row(int(pid)))
+    print past
     tex = open('template.tex','r')
     temp = Template(tex.read())
-    result = temp.render(budget_table=budget,product_service_secs=product_service, SWOT_table=SWOT,risks_table=risk, customer_analysis_secs=customer_analysis, industry_analysis_secs=industry_analysis, competitor_analysis_secs=competitor_analysis,disclaimer_secs=disclaimer,exec_sum_secs=exec_sum)
+    result = temp.render(budget_table=budget,past_chart=past,product_service_secs=product_service, SWOT_table=SWOT,risks_table=risk, customer_analysis_secs=customer_analysis, industry_analysis_secs=industry_analysis, competitor_analysis_secs=competitor_analysis,disclaimer_secs=disclaimer,exec_sum_secs=exec_sum)
+
 
     # write result in to files
     file_name = pid + '.tex'
