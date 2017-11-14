@@ -10,8 +10,8 @@ import subprocess
 def generate_pg(tt,pg):
     tex = open('sec.tex','r')
     temp = Template(tex.read())
-    tt = tt[0].encode('utf-8')
-    pg = pg[0].encode('utf-8')
+    tt = tt[0]
+    pg = pg[0]
     result = temp.render(tt=tt,pg=pg)
     return result
 
@@ -31,7 +31,6 @@ def generate_sec(pid,table_name):
 def generate_SWOT_sec(pid):
     conn = sqlite3.connect('test.db')
     c = conn.cursor()
-
     sec_s = ''
     sec_w = ''
     sec_o = ''
@@ -40,8 +39,6 @@ def generate_SWOT_sec(pid):
     weakness = c.execute('''select pg from swot where pid=%s and tt='Weakness';''' %(pid)).fetchall()
     opportunity = c.execute('''select pg from swot where pid=%s and tt='Opportunity';''' %(pid)).fetchall()
     threats = c.execute('''select pg from swot where pid=%s and tt='Threats';''' %(pid)).fetchall()
-    print strength
-    print weakness
     for i in strength:
         sec_s += i[0]
         sec_s += '\\newline'+'\n'
