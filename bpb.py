@@ -1,4 +1,3 @@
-
 from flask import Flask
 from flask import render_template
 from flask import request
@@ -23,6 +22,25 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 def main():
 	return render_template('main.html')
 
+@app.route('/admin',methods=['GET'])
+def admin():
+	if login_status(session,0):
+		result = db_func.select_all('user')
+		return render_template('admin.html',data=result)
+	else:
+		return redirect('/login')
+
+@app.route('/add',methods=['POST'])
+def add():
+	if login_status(session,0):
+		name = request.form['name']
+		password = request.form['psw']
+		db_func.add_account(name,password)
+		flash('Successfully added a new account')
+		return redirect('/admin')
+	else:
+		return redirect('/login')
+
 @app.route('/login',methods=('GET','POST'))
 def login():
 	if request.method == 'GET':
@@ -30,6 +48,7 @@ def login():
 	if request.method == 'POST':
 		email = request.form['email']
 		password = request.form['password']
+		print email,password
 		id = suc_login(email, password)
 		if (id == []):
 			session['logged_in'] = False
@@ -39,8 +58,11 @@ def login():
 			session['logged_in'] = True
 			session['project_number'] = id[0]
 			pid = id[0]
-			flash('You were successfully logged in')
-			return redirect('/%d/info' % pid )
+			if pid[0]==0:
+				return redirect('/admin')
+			else:
+				flash('You were successfully logged in')
+				return redirect('/%d/info' % pid )
 
 @app.route('/logout', methods=['GET'])
 def logout():

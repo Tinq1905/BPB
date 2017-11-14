@@ -148,6 +148,24 @@ def delete_past(table,pid):
 	conn.close()
 	return 'success'
 
+###
+
+def select_all(table):
+	conn = sqlite3.connect('test.db')
+	c = conn.cursor()
+	result = c.execute('''select * from '%s' ''' % (table)).fetchall()
+	conn.commit()
+	conn.close()
+	return result
+
+def add_account(name,password):
+	conn = sqlite3.connect('test.db')
+	c = conn.cursor()
+	c.execute('''insert into user(email,password) values ('%s','%s') ''' % (name,password))
+	conn.commit()
+	conn.close()
+	return 'success'
+
 def validate_content(*arg):
 	for i in arg:
 		if len(i)== 0:
