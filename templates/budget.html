@@ -398,7 +398,7 @@
             <h3>Last Year:</h3>
               <label>Sales:</label><input type="number" value="{{ data[3][0][0][1] }}" id="sales" name="sale" class="form-control"   required>
               <label>COGS:</label><input type="number" value="{{ data[3][0][0][2] }}" id="cogs" name="cogs" class="form-control"   required>
-              <label>Revenue:</label><input type="number" value="{{ data[3][0][0][3] }}" id="revenue" name="revenue" class="form-control"  required>
+              <label>Profit:</label><input type="number" value="{{ data[3][0][0][3] }}" id="revenue" name="revenue" class="form-control"  required>
               <label>Other Expenses:</label><input type="number" value="{{ data[3][0][0][4] }}" id="expense" name="expense" class="form-control"  required>
               <input name="table" value="firstyear" hidden>
               <br>
@@ -410,7 +410,7 @@
                 <h3>Last Year:</h3>
                   <label>Sales:</label><input type="number" value="" id="sale" name="sales" class="form-control"   required>
                   <label>COGS:</label><input type="number" value="" id="cogs" name="cogs" class="form-control"   required>
-                  <label>Revenue:</label><input type="number" value="" id="revenue" name="revenue" class="form-control"  required>
+                  <label>Profit:</label><input type="number" value="" id="revenue" name="revenue" class="form-control"  required>
                   <label>Other Expenses:</label><input type="number" value="" id="expense" name="expense" class="form-control"  required>
                   <input name="table" value="firstyear" hidden>
                   <br>
@@ -423,7 +423,7 @@
               <h3>Second Last Year:</h3>
               <label>Sales:</label><input type="number" value="{{ data[3][1][0][1] }}" id="sale" name="sales" class="form-control" required>
               <label>COGS:</label><input type="number" value="{{ data[3][1][0][2] }}" id="cogs" name="cogs" class="form-control" required>
-              <label>Revenue:</label><input type="number" value="{{ data[3][1][0][3] }}" id="revenue" name="revenue" class="form-control" required>
+              <label>Profit:</label><input type="number" value="{{ data[3][1][0][3] }}" id="revenue" name="revenue" class="form-control" required>
               <label>Other Expenses:</label><input type="number" value="{{ data[3][1][0][4] }}" id="expense" name="expense" class="form-control" required>
               <input name="table" value="secondyear" hidden>
               <br>
@@ -434,7 +434,7 @@
                 <h3>Second Last Year:</h3>
                 <label>Sales:</label><input type="number" value="" id="sale" name="sales" class="form-control" required>
                 <label>COGS:</label><input type="number" value="" id="cogs" name="cogs" class="form-control" required>
-                <label>Revenue:</label><input type="number" value="" id="revenue" name="revenue" class="form-control" required>
+                <label>Profit:</label><input type="number" value="" id="revenue" name="revenue" class="form-control" required>
                 <label>Other Expenses:</label><input type="number" value="" id="expense" name="expense" class="form-control" required>
                 <input name="table" value="secondyear" hidden>
                 <br>
@@ -584,7 +584,7 @@
       var firstchart = new Chart(firstctx, {
         type: 'bar',
         data: {
-          labels: ["Sales", "COGS", "Revenue", "Expense"],
+          labels: ["Sales", "COGS", "Profit", "Expense"],
           datasets: [{
             label: "Overall of Last Year",
             backgroundColor: 'rgb(255, 99, 132)',
@@ -615,7 +615,7 @@
       var secondchart = new Chart(secondctx, {
         type: 'bar',
         data: {
-          labels: ["Sales", "COGS", "Revenue", "Expense"],
+          labels: ["Sales", "COGS", "Profit", "Expense"],
           datasets: [{
             label: "Overall of Second Last Year",
             backgroundColor: 'rgb(255, 99, 132)',
