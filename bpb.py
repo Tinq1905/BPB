@@ -44,6 +44,18 @@ def add():
 	else:
 		return redirect('/login')
 
+#Change psw
+@app.route('/psw',methods=['POST'])
+def changepsw():
+	if login_status(session,0):
+		pid = request.form['pid']
+		password = request.form['psw']
+		db_func.change_psw(pid,password)
+		flash('Successfully changed the password')
+		return redirect('/admin')
+	else:
+		return redirect('/login')
+
 #Login window
 @app.route('/login',methods=('GET','POST'))
 def login():

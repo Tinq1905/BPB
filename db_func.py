@@ -166,6 +166,14 @@ def add_account(name,password):
 	conn.close()
 	return 'success'
 
+def change_psw(pid,password):
+	conn = sqlite3.connect('test.db')
+	c = conn.cursor()
+	c.execute('''update user set password = '%s' where id = '%s' ''' % (password,pid))
+	conn.commit()
+	conn.close()
+	return 'success'
+
 def validate_content(*arg):
 	for i in arg:
 		if len(i)== 0:

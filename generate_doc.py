@@ -3,6 +3,8 @@ import os
 from jinja2 import Environment, PackageLoader, select_autoescape, Template
 from helper import generate_table
 import subprocess
+import db_func
+import datetime
 
 
 # main functions
@@ -138,6 +140,13 @@ def generate_past_row(pid):
     
 def generate_doc(pid):
     # generate parts
+    info = db_func.select_record('info',int(pid))
+    company_name = info[0][1]
+    business_name = info[0][2]
+    email = info[0][3]
+    address = info[0][4]
+    number = info[0][5]
+    date = datetime.date.today()
     disclaimer=generate_sec(pid,'disclaimer')
     exec_sum=generate_sec(pid,'exec_sum')
     competitor_analysis=generate_sec(pid,'competitoranalysis')
@@ -148,10 +157,10 @@ def generate_doc(pid):
     risk = generate_risk_sec(generate_risk_rows(pid))
     budget = generate_budget_sec(generate_budget_rows(int(pid)))
     past = generate_past_chart(generate_past_row(int(pid)))
-    print past
+    
     tex = open('template.tex','r')
     temp = Template(tex.read())
-    result = temp.render(budget_table=budget,past_chart=past,product_service_secs=product_service, SWOT_table=SWOT,risks_table=risk, customer_analysis_secs=customer_analysis, industry_analysis_secs=industry_analysis, competitor_analysis_secs=competitor_analysis,disclaimer_secs=disclaimer,exec_sum_secs=exec_sum)
+    result = temp.render(budget_table=budget,past_chart=past,product_service_secs=product_service, SWOT_table=SWOT,risks_table=risk, customer_analysis_secs=customer_analysis, industry_analysis_secs=industry_analysis, competitor_analysis_secs=competitor_analysis,disclaimer_secs=disclaimer,exec_sum_secs=exec_sum,company_name=company_name,business_name=business_name,email=email,number=number,address=address,date=date)
 
 
     # write result in to files

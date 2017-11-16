@@ -12,18 +12,39 @@
 \usepackage{lscape} 
 \usepackage[utf8]{inputenc}
 \usepackage{pgfplots}
-
+\usepackage{soul}
 
 \sectionfont{\color{BrickRed}}
 \subsectionfont{\color{BrickRed}}
 \subsubsectionfont{\color{BrickRed}}
 \paragraphfont{\color{BrickRed}}
-
+\setulcolor{BrickRed}
+\setul{3pt}{1.6pt}
 \pagestyle{fancy}
 
 \begin{document}
-\maketitle
-\date
+\begin{titlepage}
+\centering
+\vspace*{\baselineskip}
+{\Large \ul{ {{company_name}} }}\\[\baselineskip]
+\vspace*{0.13\textheight}
+\setlength{\unitlength}{0.6\textwidth}
+{\color{BrickRed}\resizebox*{\unitlength}{\baselineskip}{\rotatebox{90}{$\}$}}}\\[\baselineskip] 
+\textbf{\Large Business Plan }\\[\baselineskip]
+{\color{BrickRed}{\Huge {{business_name}}}}\\[\baselineskip]
+{\Large \textit{ {{date}} }}\\
+{\color{BrickRed}\resizebox*{\unitlength}{\baselineskip}{\rotatebox{-90}{$\}$}}}\\[\baselineskip]
+{\small  \textbf{A:}{{address}}  }\\
+{\small  \textbf{P:}{{number}}  }\\
+{\small  \ul{\textbf{E:}{{email}}}}\\[\baselineskip]
+\vfill
+\raggedleft
+{\small  Supported by  }\\
+\vspace*{0.01\textheight}
+\includegraphics[width=0.15\linewidth]{logo.png}\\[2ex]
+
+\vspace*{1.5\baselineskip}
+\end{titlepage}
 
 \newpage
 \renewcommand{\abstractname}{Executive Summary}
