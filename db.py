@@ -6,16 +6,13 @@ c = conn.cursor()
 
 #c.execute('''CREATE TABLE exec_sum(pid INTEGER, did INTEGER PRIMARY KEY ASC, tt TEXT NOT NULL,pg TEXT NOT NULL, FOREIGN KEY (pid) REFERENCES user(pid));''')
 
-#c.execute('''INSERT INTO exec_sum(pid,tt,pg) VALUES (1,"aaaaaaaa","abcde")''')
-#c.execute('''INSERT INTO exec_sum (pid,tt,pg) VALUES (2,"bbbbbbbbbb","testtext")''')
-
 #cont = c.execute('''SELECT * FROM exec_sum;''').fetchall()
 #print cont
 
 def delete_record(table,did):
 	conn = sqlite3.connect('test.db')
 	c = conn.cursor()	
-	c.execute('''DELETE FROM '%s' WHERE did='%s' ''' % (table,did))
+	c.execute('''DELETE FROM '%s' WHERE did='%s' ''' % (table,did))	
 	conn.commit()
 	conn.close()
 	return 'success'

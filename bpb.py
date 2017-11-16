@@ -18,10 +18,12 @@ app = Flask(__name__)
 app.secret_key = 'Trconsulting'
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
+#entry of the website
 @app.route('/')
 def main():
 	return render_template('main.html')
 
+#backend sys for BPB
 @app.route('/admin',methods=['GET'])
 def admin():
 	if login_status(session,0):
@@ -30,6 +32,7 @@ def admin():
 	else:
 		return redirect('/login')
 
+#Add a user to the system
 @app.route('/add',methods=['POST'])
 def add():
 	if login_status(session,0):
@@ -41,6 +44,7 @@ def add():
 	else:
 		return redirect('/login')
 
+#Login window
 @app.route('/login',methods=('GET','POST'))
 def login():
 	if request.method == 'GET':
@@ -64,11 +68,13 @@ def login():
 				flash('You were successfully logged in')
 				return redirect('/%d/info' % pid )
 
+#Logout window
 @app.route('/logout', methods=['GET'])
 def logout():
 	session.clear()
 	return redirect(url_for('main'))
 
+#download the pdf
 @app.route('/<int:pid>/sendpdf',methods=['GET'])
 def sendpdf(pid):
 	print 'aaa'
@@ -734,7 +740,7 @@ def budget_update(pid):
 	else:
 		return redirect(url_for('login'))
 
-# login id
+# login and get id
 def suc_login(email,password):
 	info = [email,password]
 	def getone(info):
@@ -745,7 +751,7 @@ def suc_login(email,password):
 		return id
 	return getone(info)
 
-# login validation
+# login status validation
 def login_status(session,pid):
 	if 'logged_in' in session:
 		if session['logged_in'] == True and session['project_number'][0] == pid:
@@ -754,6 +760,6 @@ def login_status(session,pid):
 			return False
 	return False
 
-
+# Service start
 if __name__=='__main__':
 	app.run(debug=True,port=8000)

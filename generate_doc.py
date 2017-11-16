@@ -5,7 +5,6 @@ from helper import generate_table
 import subprocess
 
 
-
 # main functions
 def generate_pg(tt,pg):
     tex = open('sec.tex','r')
