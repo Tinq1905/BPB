@@ -135,7 +135,7 @@ def insert_past(table,pid,sales,cogs,revenue,expense):
 def update_past(table,pid,sales,cogs,revenue,expense):
 	conn = sqlite3.connect('test.db')
 	c = conn.cursor()
-	c.execute('''UPDATE '%s' SET sales='%s',cogs='%s',revenue='%s',expense='%s',where pid='%s')''' % (table,sales,cogs,revenue,expense,pid))
+	c.execute('''UPDATE '%s' SET sales='%s',cogs='%s',revenue='%s',expense='%s' where pid='%s' ''' % (table,sales,cogs,revenue,expense,pid))
 	conn.commit()
 	conn.close()
 	return 'success'

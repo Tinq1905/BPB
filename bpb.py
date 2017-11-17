@@ -666,24 +666,27 @@ def past(pid):
 		if (session['logged_in'] == True):
 			action = request.form['action']
 			if action =='update':
-				print request.form['sales']
 				sales = request.form['sales']
 				cogs = request.form['cogs']
-				revenue = request.form['revenue']
+				revenue = request.form['revenue']	
 				expense = request.form['expense']
 				table = request.form['table']
-				if db_func.validate_content(db_func.select_record(table,pid)):
-					db_func.update_past(table,pid,sales,cogs,revenue,expense)
-					flash('successfully update !')
-					return redirect('/%d/budget' % pid)
-				else:
-					db_func.insert_past(table,pid,sales,cogs,revenue,expense)
-					flash('successfully insert !')
-					return redirect('/%d/budget' % pid)
+				db_func.update_past(table,pid,sales,cogs,revenue,expense)
+				flash('successfully update !')
+				return redirect('/%d/budget' % pid)
 			if action == 'delete':
 				table = request.form['table']
 				db_func.delete_past(table,pid)
 				flash('successfully delete !')
+				return redirect('/%d/budget' % pid)
+			if action =='insert':
+				sales = request.form['sales']
+				cogs = request.form['cogs']
+				revenue = request.form['revenue']	
+				expense = request.form['expense']
+				table = request.form['table']
+				db_func.insert_past(table,pid,sales,cogs,revenue,expense)
+				flash('successfully insert !')
 				return redirect('/%d/budget' % pid)
 			else:
 				pass
