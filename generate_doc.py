@@ -141,11 +141,18 @@ def generate_past_row(pid):
 def generate_doc(pid):
     # generate parts
     info = db_func.select_record('info',int(pid))
-    company_name = info[0][1]
-    business_name = info[0][2]
-    email = info[0][3]
-    address = info[0][4]
-    number = info[0][5]
+    if info != []:
+        company_name = info[0][1]
+        business_name = info[0][2]
+        email = info[0][3]
+        address = info[0][4]
+        number = info[0][5]
+    else:
+        company_name = 'Null'
+        business_name = 'Null'
+        email = 'Null'
+        address = 'Null'
+        number = 'Null'
     date = datetime.date.today()
     disclaimer=generate_sec(pid,'disclaimer')
     exec_sum=generate_sec(pid,'exec_sum')

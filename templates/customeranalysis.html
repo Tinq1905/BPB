@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block main %}
-			<main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
-				<h1>Customer Analysis</h1>
+			<main class="col-sm-9 ml-sm-auto col-md-10 pt-3" style="background-color:#e8ecfa;" srole="main">
+				<h1><i class="fa fa-paperclip" aria-hidden="true"></i> Customer Analysis</h1>
 				<section class="placeholders">
 					<div>
 						<hr>
@@ -11,7 +11,7 @@
 							<label for="pg">Content:</label>
 							<textarea rows="10" id="pg" name="pg" class="form-control" placeholder="content" required></textarea>
 							<br>
-							<input class="btn btn-primary" method = "post" type="submit"></input>
+							<input class="btn btn-outline-primary" method = "post" type="submit"></input>
 						</form>
 					</div>
 				</section>
@@ -26,8 +26,8 @@
 							<div style="white-space: pre-line" class="card-body">{{ i[3] }}</div>
 							<div hidden class='did'>{{  i[1]  }}</div>
 							<div align="right" style="margin-bottom: 15px;">
-								<input type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal" onclick="load(this)" style="margin-right: 15px;margin-top:10px;float:right;width: 120px;" value="Edit"></input>
-								<input type="button" class="btn btn-sm btn-danger" data-toggle="modal" onclick="deleteFunction(this)" style="margin-right: 15px;margin-top:10px;float:right;width: 120px;" value="Delete" data-target="#delConfirm"> </input>
+								<input type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#editModal" onclick="load(this)" style="margin-right: 15px;margin-top:10px;float:right;width: 120px;" value="Edit"></input>
+								<input type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" onclick="deleteFunction(this)" style="margin-right: 15px;margin-top:10px;float:right;width: 120px;" value="Delete" data-target="#delConfirm"> </input>
 							</div>
 						</div>
 						{% endfor %}
@@ -55,7 +55,7 @@
 										<input hidden id="modalId" name="did"></input>
 										<br>
 										<input type="button" class="btn btn-secondary" value="Close" data-dismiss="modal"></input>
-										<input type="submit" method="post" class="btn btn-primary" value="Save changes"></input>
+										<input type="submit" method="post" class="btn btn-outline-primary" value="Save changes"></input>
 									</form>
 								</div>
 
@@ -80,7 +80,7 @@
 									<form class="form" id="delForm" action="/{{ data[0][0] }}/customeranalysis/delete" method="post">
 										<input hidden id="delId" name="did"></input>
 										<br>
-										<input type="submit" form="delForm" value="Confirm" class="btn btn-sm btn-danger"></input>
+										<input type="submit" form="delForm" value="Confirm" class="btn btn-sm btn-outline-danger"></input>
 										<input type="button" align="right" class="btn btn-secondary btn-sm" value="Cancel" data-dismiss="modal"></input>
 									</form>
 								</div>

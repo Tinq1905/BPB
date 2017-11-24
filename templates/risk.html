@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block main %}
-<main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
-  <h1>Risk</h1>
+<main class="col-sm-9 ml-sm-auto col-md-10 pt-3" style="background-color:#e8ecfa;" role="main">
+  <h1><i class="fa fa-paperclip" aria-hidden="true"></i> Risk</h1>
   <section class="placeholders">
     <div>
       <hr>
@@ -29,7 +29,7 @@
         <label for="strategy">Risk mitigation strategy</label>
         <textarea name='strat' rows="5" id="strategy" name="strategy" class="form-control" placeholder="risk mitigation strategy" required></textarea>
         <br>
-        <input class="btn btn-primary" method = "post" type="submit"></input>
+        <input class="btn btn-outline-primary" method = "post" type="submit"></input>
       </form>
     </div>
   </section>
@@ -40,7 +40,7 @@
       {% if data %}
       {% for i in data %}
       <div class="card" style="margin-bottom: 20px;">
-        <h2 class="card-header"></h2>
+        <div class="card-body">
         <label style='font-weight:bold;'>Risk description:</label>
         <div style="white-space: pre-line" class="streamDes">{{ i[2] }}</div>
         <label style='font-weight:bold;'>Risk likelihood:</label>
@@ -53,10 +53,11 @@
         <div style="white-space: pre-line" class="streamStrat">{{ i[6] }}</div>
         <div hidden class='did'>{{  i[1]  }}</div>
         <div align="right" style="margin-bottom: 15px;">
-          <input type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal" onclick="loadRisk(this)" style="margin-right: 15px;margin-top:10px;float:right;width: 120px;" value="Edit"></input>
-          <input type="button" class="btn btn-sm btn-danger" data-toggle="modal" onclick="deleteFunction(this)" style="margin-right: 15px;margin-top:10px;float:right;width: 120px;" value="Delete" data-target="#delConfirm"> </input>
+          <input type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#editModal" onclick="loadRisk(this)" style="margin-right: 15px;margin-top:10px;float:right;width: 120px;" value="Edit"></input>
+          <input type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" onclick="deleteFunction(this)" style="margin-right: 15px;margin-top:10px;float:right;width: 120px;" value="Delete" data-target="#delConfirm"> </input>
         </div>
       </div>
+    </div>
       {% endfor %}
       {% endif %}
     </div>
@@ -100,7 +101,7 @@
               </textarea>
               <br>
               <input type="button" class="btn btn-secondary" value="Close" data-dismiss="modal"></input>
-              <input type="submit" method="post" class="btn btn-primary" value="Save changes"></input>
+              <input type="submit" method="post" class="btn btn-outline-primary" value="Save changes"></input>
             </form>
           </div>
           {% endif %}
@@ -124,7 +125,7 @@
             <form class="form" id="delForm" action="/{{ data[0][0] }}/risk/delete" method="post">
               <input hidden id="delId" name="did"></input>
               <br>
-              <input type="submit" form="delForm" value="Confirm" class="btn btn-sm btn-danger"></input>
+              <input type="submit" form="delForm" value="Confirm" class="btn btn-sm btn-outline-danger"></input>
               <input type="button" align="right" class="btn btn-secondary btn-sm" value="Cancel" data-dismiss="modal"></input>
             </form>
           </div>

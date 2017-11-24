@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 {% block main %}
 
-<main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
-  <h1>Info</h1>
-  <section class="placeholders">
+<main class="col-sm-9 ml-sm-auto col-md-10 pt-3" style="background-color:#e8ecfa;" role="main">
+  <h1><i class="fa fa-paperclip" aria-hidden="true"></i> Info</h1>
+  <section class="placeholders" >
     <div>
       <hr>
       {% if data[0] %}
@@ -32,7 +32,7 @@
           <label>Industry</label>
           <input name="theIndustry" value="{{ data[0][6] }}" class="form-control" placeholder="Industry" required="" autofocus="">
         </div>
-        <input class="btn btn-primary" method = "post" type="submit" value="Submit"></input>
+        <input class="btn btn-outline-primary" method = "post" type="submit" value="Submit"></input>
         <hr>
       </form>
       {% else %}
@@ -62,7 +62,7 @@
             <input name="theIndustry" class="form-control" placeholder="Industry" required="" autofocus="">
             <hr>
           </div>
-          <input class="btn btn-primary" method = "post" type="submit" value="Submit"></input>
+          <input class="btn btn-outline-primary" method = "post" type="submit" value="Submit"></input>
         </form>
         {% endif %}
     </div>
