@@ -13,7 +13,7 @@
       </nav>
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-revenue" role="tabpanel" aria-labelledby="nav-revenue-tab">
-          <div class="container">
+          <div>
             <br>
             <form class="form" method="post" action="/{{ session.project_number[0] }}/item" >
               <label>What's the name of this item ?</label>
@@ -35,7 +35,8 @@
             {% if data[0] %}
             {% for i in data[0] %}
             <div class="card" style="margin-bottom: 20px;">
-              <h2 class="card-heading streamName">Item name: {{ i[2] }}</h2>
+              <h2 class="card-header streamName">Item name: {{ i[2] }}</h2>
+              <div class="card-body">
               <div  class="streamPrice">Price:  {{ i[3] }}</div>
               <div  class="streamCost">Cost:  {{ i[4] }}%</div>
               <div  class="streamNum">Expected selling:  {{ i[5] }}</div>
@@ -46,13 +47,14 @@
                 <input type="button" class="btn btn-sm btn-danger" data-toggle="modal" onclick="deleteFunction(this)" style="margin-right: 15px;margin-top:10px;float:right;width: 120px;" value="Delete" data-target="#delConfirm"> </input>
               </div>
             </div>
+            </div>
             {% endfor %}
             {% endif %}
           </div>
         </div>
         
         <div class="tab-pane fade" id="nav-expense" role="tabpanel" aria-labelledby="nav-expense-tab">
-          <div class="container">
+          <div>
             <br>
             {% if data[1][0] %}
             <form class="form" method="post" action="/{{ session.project_number[0] }}/budget/update">
@@ -391,7 +393,7 @@
         </div>
       
       <div class="tab-pane fade" id="nav-hist" role="tabpanel" aria-labelledby="nav-hist-tab">
-          <div class="container">
+          <div>
             <br>
             {% if data[3][0] != [] %}
             <form action="/{{ session.project_number[0] }}/past" method="post">

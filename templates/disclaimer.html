@@ -2,8 +2,8 @@
 {% block main %}
 			<main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
 				<h1>Disclaimer</h1>
-				<section class="row placeholders">
-					<div class="container">
+				<section class=" placeholders">
+					<div >
 						<hr>
 						<form class="form" method="post">
 							<label for="pg">Tittle:</label>
@@ -22,7 +22,7 @@
 						{% if data %}
 						{% for i in data %}
 						<div class="card" style="margin-bottom: 20px;">
-							<h2 class="card-heading">{{ i[2] }}</h2>
+							<h2 class="card-header">{{ i[2] }}</h2>
 							<div style="white-space: pre-line" class="card-body">{{ i[3] }}</div>
 							<div hidden class='did'>{{  i[1]  }}</div>
 							<div align="right" style="margin-bottom: 15px;">

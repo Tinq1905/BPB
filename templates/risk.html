@@ -2,8 +2,8 @@
 {% block main %}
 <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
   <h1>Risk</h1>
-  <section class="row placeholders">
-    <div class="container">
+  <section class="placeholders">
+    <div>
       <hr>
       <form class="form" method="post">
         <label for="risk_d">Risk description</label>
@@ -40,7 +40,7 @@
       {% if data %}
       {% for i in data %}
       <div class="card" style="margin-bottom: 20px;">
-        <h2 class="card-heading"></h2>
+        <h2 class="card-header"></h2>
         <label style='font-weight:bold;'>Risk description:</label>
         <div style="white-space: pre-line" class="streamDes">{{ i[2] }}</div>
         <label style='font-weight:bold;'>Risk likelihood:</label>

@@ -19,6 +19,7 @@
 	{% endif %}
 	{% endwith %}
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -55,57 +56,57 @@
 		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="/"><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
 				</li>
 			</ul>
-			<button class="btn btn-outline-info" data-toggle="modal" data-target="#instruction">Instruction</button>
-			<a class="btn btn-outline-success my-2 my-sm-0" style="margin-left:10px;" href="{{ '/%d/sendpdf' % session['project_number'][0] }}">Print</a>
-			<a class="btn btn-outline-danger" style="margin-left:10px;" href="\logout">Logout</a>
+			<button class="btn btn-outline-info" data-toggle="modal" data-target="#instruction"><i class="fa fa-bolt" aria-hidden=""></i>  Instruction</button>
+			<a class="btn btn-outline-success my-2 my-sm-0" style="margin-left:10px;" href="{{ '/%d/sendpdf' % session['project_number'][0] }}"><i class="fa fa-print" aria-hidden="true"></i> Print</a>
+			<a class="btn btn-outline-danger" style="margin-left:10px;" href="\logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
 		</div>
 	</nav>
 	
 	<div class="container-fluid">
 		<div class="row">
-			<nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+			<nav class="col-sm-3 col-md-2 d-none d-sm-block sidebar" style="background-color:#6ea4ca;">
 				<ul class="nav nav-pills flex-column">
 					<li class="nav-item">
 						<a class="nav-link" href="#"> </a>
 					</li>
 					
 					<li class="nav-item">
-						<a class="nav-link" href="{{ '/%d/info' % session['project_number'][0] }}">Info <span class="sr-only"></span></a>
+						<a class="nav-link text-white" href="{{ '/%d/info' % session['project_number'][0] }}"> <b> Info</b> <span class="sr-only"></span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ '/%d/exec_sum' % session['project_number'][0] }}">Executive Summary<span class="sr-only"></span></a>
+						<a class="nav-link text-white" href="{{ '/%d/exec_sum' % session['project_number'][0] }}"> <b> Executive Summary</b><span class="sr-only"></span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ '/%d/SWOT' % session['project_number'][0] }}">SWOT analysis</a>
+						<a class="nav-link text-white" href="{{ '/%d/SWOT' % session['project_number'][0] }}"> <b> SWOT analysis</b></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ '/%d/customeranalysis' % session['project_number'][0] }}">Customer Analysis</a>
+						<a class="nav-link text-white" href="{{ '/%d/customeranalysis' % session['project_number'][0] }}"> <b> Customer Analysis</b></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link"  href="{{ '/%d/competitoranalysis' % session['project_number'][0] }}">Competitor Analysis</a>
+						<a class="nav-link text-white"  href="{{ '/%d/competitoranalysis' % session['project_number'][0] }}"> <b> Competitor Analysis</b></a>
 					</li>
 				</ul>
 				<ul class="nav nav-pills flex-column">
 					<li class="nav-item">
-						<a class="nav-link" href="{{ '/%d/industry_analysis' % session['project_number'][0] }}">Industry Analysis</a>
+						<a class="nav-link text-white" href="{{ '/%d/industry_analysis' % session['project_number'][0] }}"> <b> Industry Analysis</b></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ '/%d/product_service' % session['project_number'][0] }}">Product and Service</a>
+						<a class="nav-link text-white" href="{{ '/%d/product_service' % session['project_number'][0] }}"> <b> Product and Service</b></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ '/%d/budget' % session['project_number'][0] }}">Budget</a>
+						<a class="nav-link text-white" href="{{ '/%d/budget' % session['project_number'][0] }}"> <b> Budget</b></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ '/%d/risk' % session['project_number'][0] }}">Risk</a>
+						<a class="nav-link text-white" href="{{ '/%d/risk' % session['project_number'][0] }}"> <b> Risk</b></a>
 					</li>
 				</ul>
 				
 				<ul class="nav nav-pills flex-column">
 					<li class="nav-item">
-						<a class="nav-link" href="{{ '/%d/disclaimer' % session['project_number'][0] }}">Disclaimer</a>
+						<a class="nav-link text-white" href="{{ '/%d/disclaimer' % session['project_number'][0] }}"> <b> Disclaimer</b></a>
 					</li>
 				</ul>
 			</nav>
@@ -113,7 +114,8 @@
 			
 		</div>
 	</div>
-	
+
+
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
@@ -122,7 +124,7 @@
 		function load(content){
 			
 			var heading = document.getElementById('modalTittleContent');
-			heading.value = content.parentElement.parentElement.getElementsByClassName("card-heading")[0].textContent;
+			heading.value = content.parentElement.parentElement.getElementsByClassName("card-header")[0].textContent;
 			document.getElementById('modalBodyContent').innerHTML = content.parentElement.parentElement.getElementsByClassName("card-body")[0].textContent;
 			var theId = document.getElementById('modalId')
 			theId.value = content.parentElement.parentElement.getElementsByClassName("did")[0].textContent;
