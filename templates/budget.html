@@ -210,6 +210,7 @@
         <div class="tab-pane fade" id="nav-preview" role="tabpanel" aria-labelledby="nav-preview-tab">
           <br>
           {% if data[2]!= [] %}
+          <div class="table-responsive">
           <table class="table table-sm table-bordered">
             <thead class="thead-inverse">
               <tr>
@@ -227,7 +228,6 @@
                 <th>Month 11</th>
                 <th>Month 12</th>
                 <th>Total</th>
-                <th>Percentage</th>
               </tr>
             </thead>
             <tbody>
@@ -372,7 +372,7 @@
             </tbody>
           </table>
           <hr>
-          <div class="container">
+          <div>
             <h3> Selling line chart:</h3>
             <hr>
             <canvas style="width:500px;" id="myChart"></canvas>
@@ -392,6 +392,7 @@
           </div>
           {% endif %}
         </div>
+      </div>
       
       <div class="tab-pane fade" id="nav-hist" role="tabpanel" aria-labelledby="nav-hist-tab">
           <div>

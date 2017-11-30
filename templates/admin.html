@@ -29,8 +29,8 @@
         </div>
         <div class="modal-body">
           <form class="form" method="POST" action="/add">
-            <laber>Account name:</laber><input width="80px" type="email" class="form-control" name="name">
-            <laber>Account password:</laber><input type="text" class="form-control" name="psw">
+            <laber>Account name:</laber><input width="80px" required type="email" class="form-control" name="name">
+            <laber>Account password:</laber><input type="text" required class="form-control" name="psw">
             <br>
             <button class="btn btn-md btn-outline-primary">Add</button>
           </form>
@@ -49,8 +49,8 @@
         </div>  
         <div class="modal-body">
           <form class="form" method="POST" action="/psw">
-            <laber>User ID:</laber><input type="number" class="form-control" name="pid">
-            <laber>New password:</laber><input type="text" class="form-control" name="psw">
+            <laber>User ID:</laber><input type="number" required class="form-control" name="pid">
+            <laber>New password:</laber><input type="text" required class="form-control" name="psw">
             <br>
             <button class="btn btn-md btn-outline-primary">Submit</button>
           </form>
