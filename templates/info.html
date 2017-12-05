@@ -8,6 +8,7 @@
       <hr>
       {% if data[0] %}
       <form method="post">
+        <blockquote>* Info page collects basic information about your business and company. All areas are required and submit button can be used to update information when required.</blockquote>
         <div class="form-group">
           <label>Company name</label>
           <input name="theName" value="{{ data[0][1] }}" type="text" class="form-control" placeholder="Company name" required="" autofocus="">
@@ -37,6 +38,7 @@
       </form>
       {% else %}
       <form method="post">
+        <blockquote>* Info page collects basic information about your business and company. All areas are required and submit button can be used to update information when required.</blockquote>
           <div class="form-group">
             <label>Company name</label>
             <input name="theName" type="text" class="form-control" placeholder="Company name" required="" autofocus="">

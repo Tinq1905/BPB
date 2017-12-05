@@ -4,7 +4,7 @@
     <h1><i class="fa fa-paperclip" aria-hidden="true"></i> Budget</h1>
     <hr>
     <section>
-      <br>
+      <blockquote>* Budget section contains four different tabs. The Revenue page allows you to input as many as items you want. Expense tab is used to input possible expense including labour cost, rents, bank fees, etc. Preview page gives a view of the calculation results of the stored data. Historical data is optional and it is only required when you already have running data for last two years.</blockquote>
       <nav class="nav nav-tabs" id="myTab" role="tablist">
         <a class="nav-item nav-link active" id="nav-renevue-tab" data-toggle="tab" href="#nav-revenue" role="tab" aria-controls="nav-revenue" aria-selected="true">Revenue</a>
         <a class="nav-item nav-link" id="nav-expense-tab" data-toggle="tab" href="#nav-expense" role="tab" aria-controls="nav-expense" aria-selected="false">Expense</a>
@@ -16,6 +16,7 @@
           <div>
             <br>
             <form class="form" method="post" action="/{{ session.project_number[0] }}/item" >
+              <blockquote>* Revenue page is used to input your main revenue source. Please answer the questions below and give your sales projection. The data collected here will be used to calculated in the budget preview. Feel free to input as many items as you wish.</blockquote>
               <label>What's the name of this item ?</label>
               <input id="name" name="name" class="form-control" placeholder="Name" required>
               <label >What's the price of this item ?</label>
@@ -58,6 +59,7 @@
             <br>
             {% if data[1][0] %}
             <form class="form" method="post" action="/{{ session.project_number[0] }}/budget/update">
+              <blockquote>* Expense page is used to input and update your expenses through the business. Data collected in this section would be used to calculated a budget in the preview tab. All areas are required. Feel free to input 0 for any non-existant expense.</blockquote>
               <h3>Labour cost:</h3>
               <h4>Monday:</h4>
               <label>Labour hours:</label><input type="number" value="{{ data[1][0][1] }}" id="monHours" name="monHours" class="form-control" placeholder="hours" required>
@@ -130,6 +132,7 @@
             </form>
             {% else %}
             <form class="form" method="post" action="/{{ session.project_number[0] }}/budget/update">
+              <blockquote>* Expense page is used to input and update your expenses through the business. Data collected in this section would be used to calculated a budget in the preview tab. All areas are required. Feel free to input 0 for any non-existant expense.</blockquote>
               <h3>Labour cost:</h3>
               <h4>Monday:</h4>
               <label>Labour hours:</label><input type="number"   id="monHours" name="monHours" class="form-control" placeholder="hours" required>
@@ -399,6 +402,7 @@
             <br>
             {% if data[3][0] != [] %}
             <form action="/{{ session.project_number[0] }}/past" method="post">
+              <blockquote>* In this section, you can upload your previous sales data (if available). This is optional.</blockquote>
             <h3>Last Year:</h3>
               <label>Sales:</label><input type="number" value="{{ data[3][0][0][1] }}" id="sales" name="sales" class="form-control"   required>
               <label>COGS:</label><input type="number" value="{{ data[3][0][0][2] }}" id="cogs" name="cogs" class="form-control"   required>
@@ -411,6 +415,7 @@
             <hr>
             {% else %}
             <form action="/{{ session.project_number[0] }}/past" method="post">
+              <blockquote>* In this section, you can upload your previous sales data (if available). This is optional.</blockquote>              
                 <h3>Last Year:</h3>
                   <label>Sales:</label><input type="number" value="" id="sale" name="sales" class="form-control"   required>
                   <label>COGS:</label><input type="number" value="" id="cogs" name="cogs" class="form-control"   required>
