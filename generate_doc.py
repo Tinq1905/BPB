@@ -11,8 +11,8 @@ import datetime
 def generate_pg(tt,pg):
     tex = open('sec.tex','r')
     temp = Template(tex.read())
-    tt = tt[0]
-    pg = pg[0]
+    tt = tt[0].strip().replace('%','\%').replace('&','\&').replace('$','\$')
+    pg = pg[0].strip().replace('%','\%').replace('&','\&').replace('$','\$')
     result = temp.render(tt=tt,pg=pg)
     return result
 
@@ -41,16 +41,16 @@ def generate_SWOT_sec(pid):
     opportunity = c.execute('''select pg from swot where pid=%s and tt='Opportunity';''' %(pid)).fetchall()
     threats = c.execute('''select pg from swot where pid=%s and tt='Threats';''' %(pid)).fetchall()
     for i in strength:
-        sec_s += i[0]
+        sec_s += i[0].replace('&','\&').strip()
         sec_s += '\\newline'+'\n'
     for i in weakness:
-        sec_w += i[0]
+        sec_w += i[0].replace('&','\&').strip()
         sec_w += '\\newline' +'\n'
     for i in opportunity:
-        sec_o += i[0]
+        sec_o += i[0].replace('&','\&').strip()
         sec_o += '\\newline'+'\n'
     for i in threats:
-        sec_t += i[0]
+        sec_t += i[0].replace('&','\&').strip()
         sec_t += '\\newline'+'\n'
     temp = open('swot_temp.tex','r')
     swot_temp = Template(temp.read())
@@ -67,7 +67,7 @@ def generate_risk_rows(pid):
     temp = Template(risk_temp.read())
     result = ''
     for i in risks:
-        result += temp.render(risk_d=i[2],risk_l=i[3],risk_i=i[4],risk_r=i[5],risk_m=i[6])
+        result += temp.render(risk_d=i[2],risk_l=i[3],risk_i=i[4],risk_r=i[5],risk_m=i[6].strip())
     conn.commit()
     conn.close()
     return result
