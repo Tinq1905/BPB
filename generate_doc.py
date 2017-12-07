@@ -11,8 +11,8 @@ import datetime
 def generate_pg(tt,pg):
     tex = open('sec.tex','r')
     temp = Template(tex.read())
-    tt = tt[0].strip().replace('%','\%').replace('&','\&').replace('$','\$')
-    pg = pg[0].strip().replace('%','\%').replace('&','\&').replace('$','\$')
+    tt = tt[0].replace('%','\%').replace('&','\&').replace('$','\$')
+    pg = pg[0].replace('%','\%').replace('&','\&').replace('$','\$')
     result = temp.render(tt=tt,pg=pg)
     return result
 
