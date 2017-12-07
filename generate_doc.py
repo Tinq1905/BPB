@@ -41,16 +41,16 @@ def generate_SWOT_sec(pid):
     opportunity = c.execute('''select pg from swot where pid=%s and tt='Opportunity';''' %(pid)).fetchall()
     threats = c.execute('''select pg from swot where pid=%s and tt='Threats';''' %(pid)).fetchall()
     for i in strength:
-        sec_s += i[0].replace('&','\&').strip()
+        sec_s += i[0].replace('&','\&').strip().replace('\r\n','\\newline ')
         sec_s += '\\newline'+'\n'
     for i in weakness:
-        sec_w += i[0].replace('&','\&').strip()
+        sec_w += i[0].replace('&','\&').strip().replace('\r\n','\\newline ')
         sec_w += '\\newline' +'\n'
     for i in opportunity:
-        sec_o += i[0].replace('&','\&').strip()
+        sec_o += i[0].replace('&','\&').strip().replace('\r\n','\\newline ')
         sec_o += '\\newline'+'\n'
     for i in threats:
-        sec_t += i[0].replace('&','\&').strip()
+        sec_t += i[0].replace('&','\&').strip().replace('\r\n','\\newline ')
         sec_t += '\\newline'+'\n'
     temp = open('swot_temp.tex','r')
     swot_temp = Template(temp.read())
