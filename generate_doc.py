@@ -6,6 +6,7 @@ import subprocess
 import db_func
 import datetime
 
+# use strip() to remove the blank lines and spaces at the beginning and end of the line.
 
 # main functions
 def generate_pg(tt,pg):

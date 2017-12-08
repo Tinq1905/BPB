@@ -1,6 +1,8 @@
 import sqlite3
 
 def insert_record(table,pid,tt,pg):
+	tt = tt.replace("'","''")
+	pg = pg.replace("'","''")
 	conn = sqlite3.connect('test.db')
 	c = conn.cursor()
 	c.execute('''INSERT INTO '%s' (pid,tt,pg) VALUES ('%d','%s','%s')''' % (table,pid,tt,pg))
@@ -9,6 +11,8 @@ def insert_record(table,pid,tt,pg):
 	return 'success'
 
 def update_record(table,did,tt,pg):
+	tt = tt.replace("'","''")
+	pg = pg.replace("'","''")
 	conn = sqlite3.connect('test.db')
 	c = conn.cursor()
 	c.execute('''UPDATE'%s' SET tt='%s',pg='%s' WHERE did='%s' ''' % (table,tt,pg,did))
@@ -36,6 +40,8 @@ def select_record(table,pid):
 ###
 
 def insert_risk(table,pid,des,likelihood,impact,rating,strat):
+	des = des.replace("'","''")
+	strat = strat.replace("'","''")
 	conn = sqlite3.connect('test.db')
 	c = conn.cursor()
 	c.execute('''INSERT INTO '%s' (pid,des,likelihood,impact,rating,strat) VALUES ('%d','%s','%s','%s','%s','%s')''' % (table,pid,des,likelihood,impact,rating,strat))
@@ -44,6 +50,8 @@ def insert_risk(table,pid,des,likelihood,impact,rating,strat):
 	return 'success'
 
 def update_risk(table,did,des,likelihood,impact,rating,strat):
+	des = des.replace("'","''")
+	strat = strat.replace("'","''")
 	conn = sqlite3.connect('test.db')
 	c = conn.cursor()
 	c.execute('''UPDATE'%s' SET des='%s',likelihood='%s',impact='%s',rating='%s',strat='%s' WHERE did='%s' ''' % (table,des,likelihood,impact,rating,strat,did))
@@ -71,6 +79,11 @@ def select_risk(table,pid):
 ###
 
 def update_info(pid,c_name,p_name,e_addr,p_addr,num,industry):
+	c_name = c_name.replace("'","''")
+	p_name = p_name.replace("'","''")
+	e_addr = e_addr.replace("'","''")
+	p_addr = p_addr.replace("'","''")
+	industry = industry.replace("'","''")
 	conn = sqlite3.connect('test.db')
 	c = conn.cursor()
 	c.execute('''UPDATE INFO SET c_name='%s',p_name='%s',e_addr='%s',p_addr='%s',num='%s', industry='%s' WHERE pid='%s' ''' % (c_name,p_name,e_addr,p_addr,num,industry,pid))
@@ -79,6 +92,11 @@ def update_info(pid,c_name,p_name,e_addr,p_addr,num,industry):
 	return 'success'
 
 def insert_info(pid,c_name,p_name,e_addr,p_addr,num,industry):
+	c_name = c_name.replace("'","''")
+	p_name = p_name.replace("'","''")
+	e_addr = e_addr.replace("'","''")
+	p_addr = p_addr.replace("'","''")
+	industry = industry.replace("'","''")
 	conn = sqlite3.connect('test.db')
 	c = conn.cursor()
 	c.execute('''INSERT INTO INFO (pid, c_name,p_name,e_addr,p_addr,num,industry) VALUES ('%s','%s','%s','%s','%s','%s','%s')''' %(pid, c_name,p_name,e_addr,p_addr,num,industry))
@@ -88,6 +106,7 @@ def insert_info(pid,c_name,p_name,e_addr,p_addr,num,industry):
 ###
 
 def insert_item(pid,name,price,cost,num,inc):
+	name = name.replace("'","''")
 	conn = sqlite3.connect('test.db')
 	c = conn.cursor()
 	c.execute('''INSERT INTO ITEM (pid,name,price,cost,num,inc) VALUES ('%s','%s','%s','%s','%s','%s')''' % (pid,name,price,cost,num,inc))
@@ -159,6 +178,7 @@ def select_all(table):
 	return result
 
 def add_account(name,password):
+	name = name.replace("'","''")
 	conn = sqlite3.connect('test.db')
 	c = conn.cursor()
 	c.execute('''insert into user(email,password) values ('%s','%s') ''' % (name,password))
